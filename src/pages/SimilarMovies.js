@@ -10,8 +10,8 @@ const SimilarMovies = () => {
         return response.json();
       })
       .then((data) => {
-        setSimilars(data.results);
-        return data.results;
+        setSimilars(data.results.slice(0, 5));
+        return data.results.slice(0, 5);
       })
       .then((response) => console.log('movie_response', response))
       .catch((err) => console.log(err));
