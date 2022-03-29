@@ -1,0 +1,92 @@
+a {
+  text-decoration: none;
+}
+
+.App {
+  flex-wrap: nowrap;
+}
+
+.main__div {
+  display: grid;
+  grid-template-columns: repeat(4, 292px);
+  margin-left: 50px;
+  grid-column-gap: 16px;
+  grid-row-gap: 27px;
+  align-items: center;
+}
+
+.grid__div {
+  height: 440px;
+}
+
+.img {
+  width: 292px;
+  height: 440px;
+  object-fit: cover;
+}
+.img__div {
+  position: relative;
+  margin: 10px;
+  text-align: start;
+}
+
+.span__title {
+  position: absolute;
+  color: #ffffff;
+  bottom: 20px;
+  margin-left: 10px;
+}
+
+.starIcon {
+  position: absolute;
+  bottom: 38px;
+  margin-left: 10px;
+  color: white;
+}
+
+.similar__img {
+  width: 100%;
+  height: 648px;
+  background-image: url(./assets/card-img\ 1.png);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.similar__img h1 {
+  color: #ffffff;
+  margin-left: 236px;
+}
+
+.similar__img p {
+  color: #ffffff;
+  margin-left: 236px;
+  margin-top: 136px;
+}
+.similar__main {
+  display: grid;
+  grid-template-columns: repeat(5, 242px);
+  grid-column-gap: 16px;
+  grid-row-gap: 27px;
+}
+
+.similar__main h1 {
+}
+
+.similar__bottom {
+  flex-direction: row;
+  align-items: center;
+}
+
+.similar__bottom img {
+  width: 242px;
+  height: 440px;
+  object-fit: cover;
+}
+
+.similar__bottom p {
+  position: absolute;
+  color: #ffffff;
+}
