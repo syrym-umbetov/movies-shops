@@ -1,54 +1,79 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import MovieGrid from './MovieGrid';
+import { Pagination, Select } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchMovies,
+  SET_MOVIES_QUERY,
+  SET_MOVIES_SORT_BY,
+} from '../store/actions/fetchMovies';
 
 const Films = () => {
-  const [shazams, setShazams] = useState([]);
-  const [value, setValue] = useState('');
+  const movies = useSelector((state) => state.movies.movies);
+  const sortBy = useSelector((state) => state.movies.sortBy);
+  const query = useSelector((state) => state.movies.query);
+  const pageInfo = useSelector((state) => state.movies.pageInfo);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch(
-      'https://api.themoviedb.org/3/discover/movie?api_key=d65708ab6862fb68c7b1f70252b5d91c&language=ru-RU&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate'
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setShazams(data.results);
-        return data.results;
-      })
-      .then((response) => {
-        console.log('response', response);
-      })
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
-      .catch((err) => console.log(err));
-  }, []);
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
-  function search(query) {
-    console.log(query);
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=d65708ab6862fb68c7b1f70252b5d91c&language=ru-RU&page=1&include_adult=false&query=${query}`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data.results);
-        setShazams(data.results);
-        return data.results;
-      });
-  }
+  const setSortBy = useCallback(
+    (payload) => {
+      dispatch({ type: SET_MOVIES_SORT_BY, payload });
+    },
+    [dispatch]
+  );
+  const setQuery = useCallback(
+    (payload) => {
+      dispatch({ type: SET_MOVIES_QUERY, payload });
+    },
+    [dispatch]
+  );
+  const searchMovies = useCallback(
+    ({ page = 1, sort = sortBy } = {}) => {
+      dispatch(fetchMovies({ page, sort, query }));
+    },
+    [dispatch, query, sortBy]
+  );
 
   return (
     <div>
       <label htmlFor='Search'>Search</label>
       <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
         type='text'
       />
 
-      <button onClick={() => search(value)}>Search</button>
-      <button onClick={() => search('fantasy movies')}>Search Batman</button>
-      <MovieGrid shazams={shazams} />
+      <button onClick={() => searchMovies()}>Search</button>
+      <Pagination
+        count={pageInfo.total_pages}
+        page={pageInfo.page}
+        onChange={(e, v) => {
+          searchMovies({ page: v });
+        }}
+      />
+      <Select
+        value={sortBy}
+        label='Sort By'
+        onChange={(e) => {
+          setSortBy(e.target.value);
+          searchMovies({ sort: e.target.value });
+        }}
+      >
+        <MenuItem value={'popularity.desc'}>Poularity</MenuItem>
+        <MenuItem value={'release_date.desc'}>Release Date</MenuItem>
+        <MenuItem value={'vote_average.desc'}>Rating</MenuItem>
+      </Select>
+      <MovieGrid movies={movies} />
     </div>
   );
 };

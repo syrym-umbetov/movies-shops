@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import StarByGenre from '../utils/StarByGenre';
 
-const MovieGrid = ({ shazams }) => {
+const MovieGrid = ({ movies }) => {
+  console.log('movies', movies);
   const navigate = useNavigate();
   return (
     <div className='main__div'>
-      {shazams.map((item) => (
+      {movies.map((item) => (
         <div className='grid__div' key={item.id}>
           <div className='img__div'>
             <img

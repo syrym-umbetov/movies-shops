@@ -7,6 +7,8 @@ import SimilarMovies from './pages/SimilarMovies';
 import Films from './pages/Films';
 
 import MoviePage from './pages/MoviePage';
+import { ShoppingBagRounded } from '@mui/icons-material';
+import ShopPage from './pages/ShopPage';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path='/movies' element={<Films />} />
         <Route path='/movies/:id' element={<MoviePage />} />
         <Route path='/similarmovies' element={<SimilarMovies />} />
+        <Route path='/shop' element={<ShopPage />} />
       </Routes>
     </div>
   );
