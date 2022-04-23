@@ -29,15 +29,6 @@ const ResponsiveAppBar = () => {
       <AppBar position='static'>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
-            <Typography
-              variant='h6'
-              noWrap
-              component='div'
-              sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-            >
-              LOGO
-            </Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <Menu
                 id='menu-appbar'
@@ -103,6 +94,17 @@ const ResponsiveAppBar = () => {
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   Shop
+                </Button>
+              </Link>
+            </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Link to='/phoneshop'>
+                <Button
+                  key={'Redux'}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Phone shop
                 </Button>
               </Link>
             </Box>

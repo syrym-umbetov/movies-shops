@@ -7,8 +7,9 @@ import SimilarMovies from './pages/SimilarMovies';
 import Films from './pages/Films';
 
 import MoviePage from './pages/MoviePage';
-import { ShoppingBagRounded } from '@mui/icons-material';
-import ShopPage from './pages/ShopPage';
+
+import ShopPage from './pages/ShopPage/ShopPage';
+import ReduxToolkit from './pages/ReduxToolkit';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/movies/:id' element={<MoviePage />} />
         <Route path='/similarmovies' element={<SimilarMovies />} />
         <Route path='/shop' element={<ShopPage />} />
+        <Route path='/phoneshop' element={<ReduxToolkit />} />
       </Routes>
     </div>
   );

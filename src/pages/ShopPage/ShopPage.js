@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ProductBlock from '../components/ProductBlock';
+import ProductBlock from '../../components/ProductBlock';
+import './ShopPage.css';
 import {
   addToBasket,
   fetchProducts,
   removeFromBasket,
-} from '../store/actions/shopActions';
-import Basket from './../components/Basket';
-import { Container, Grid } from '@mui/material';
+} from '../../store/actions/shopActions';
+import Basket from '../../components/Basket';
 
 const ShopPage = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.shop.products);
+  const isLoading = useSelector((state) => state.isLoading);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -25,19 +26,19 @@ const ShopPage = () => {
   );
 
   return (
-    <Container>
+    <div>
       <Basket />
-      <Grid container spacing={2}>
+      <div className='shop'>
         {products.map((product) => (
-          <Grid item xs={3} key={product.id}>
+          <div key={product.id}>
             <ProductBlock
               product={product}
               onAddToBasket={() => handleAddToBasket(product)}
             />
-          </Grid>
+          </div>
         ))}
-      </Grid>
-    </Container>
+      </div>
+    </div>
   );
 };
 
