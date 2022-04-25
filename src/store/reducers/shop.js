@@ -42,7 +42,6 @@ export function shop(state = initState, action) {
         (product) => product.product.id === action.payload
       );
       product.count++;
-      console.log('product count', product.count);
 
       newState.basket = [...newState.basket];
 
@@ -52,6 +51,12 @@ export function shop(state = initState, action) {
         (product) => product.product.id === action.payload
       );
       productDecrease.count--;
+      if (productDecrease.count < 0) {
+        newState.basket = state.basket.filter(
+          (product) => product.product.id !== action.payload
+        );
+      }
+      console.log(productDecrease.count);
       newState.basket = [...newState.basket];
       break;
     case REMOVE_FROM_BASKET:
