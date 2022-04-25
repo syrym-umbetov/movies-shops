@@ -2,12 +2,9 @@ import './App.css';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ResponsiveAppBar from './pages/Navbar';
-import SimilarMovies from './pages/SimilarMovies';
-
-import Films from './pages/Films';
-
-import MoviePage from './pages/MoviePage';
-
+import SimilarMovies from './pages/Movies/SimilarMovies';
+import Films from './pages/Movies/Films';
+import MoviePage from './pages/Movies/MoviePage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import ReduxToolkit from './pages/ReduxToolkit';
 

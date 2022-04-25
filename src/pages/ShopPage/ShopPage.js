@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ProductBlock from '../../components/ProductBlock';
+import ProductBlock from '../../components/ProductBlock/ProductBlock';
 import './ShopPage.css';
 import {
   addToBasket,
   fetchProducts,
   removeFromBasket,
 } from '../../store/actions/shopActions';
-import Basket from '../../components/Basket';
+import Basket from '../../components/Basket/Basket';
 
 const ShopPage = () => {
   const dispatch = useDispatch();

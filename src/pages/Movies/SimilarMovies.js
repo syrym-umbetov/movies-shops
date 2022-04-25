@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SimilarBottom from '../components/SimilarBottom';
+import SimilarBottom from '../../components/SimilarBottom';
 
 const SimilarMovies = () => {
   const [similars, setSimilars] = useState([]);

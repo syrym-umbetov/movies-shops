@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import StarByGenre from '../utils/StarByGenre';
+import StarByGenre from '../../utils/StarByGenre';
 
 const MovieGrid = ({ movies }) => {
   console.log('movies', movies);

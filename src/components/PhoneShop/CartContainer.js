@@ -1,7 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../store/reducers/modal/modalSlice';
+import { openModal } from '../../store/reducers/modal/modalSlice';
 
 const CartContainer = () => {
   const dispatch = useDispatch();

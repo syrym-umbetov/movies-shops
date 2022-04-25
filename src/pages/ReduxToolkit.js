@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { CartIcon } from '../icons';
 import '../style/redux.css';
 import { useSelector, useDispatch } from 'react-redux';
-import CartContainer from './../components/CartContainer';
+import CartContainer from './../components/PhoneShop/CartContainer';
 import { calculateTotals } from '../store/reducers/cart/cartSlice';
-import Modal from './../components/Modal';
+import Modal from '../components/PhoneShop/Modal';
 import { getCartItems } from './../store/reducers/cart/cartSlice';
 
 const ReduxToolkit = () => {

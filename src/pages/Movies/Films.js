@@ -7,7 +7,7 @@ import {
   fetchMovies,
   SET_MOVIES_QUERY,
   SET_MOVIES_SORT_BY,
-} from '../store/actions/fetchMovies';
+} from '../../store/actions/fetchMovies';
 
 const Films = () => {
   const movies = useSelector((state) => state.movies.movies);
