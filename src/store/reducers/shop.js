@@ -4,24 +4,28 @@ import {
   REMOVE_FROM_BASKET,
   INCREASE_COUNT,
   DECREASE_COUNT,
-  CALCULATE_TOTALS,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  DO_NOTHING,
+  SET_LOADING,
 } from './../actions/shopActions';
 
 const initState = {
   products: [],
   basket: JSON.parse(localStorage.getItem('products')) || [],
-  isLoading: true,
+  isLoading: false,
+  modalOpen: false,
 };
 
 export function shop(state = initState, action) {
   const newState = { ...state };
 
-  console.log(action.type);
-
   switch (action.type) {
     case SET_PRODUCTS:
       newState.products = action.payload;
-
+      break;
+    case SET_LOADING:
+      newState.isLoading = action.payload;
       break;
     case ADD_TO_BASKET:
       const existedProduct = newState.basket.find(
@@ -63,6 +67,17 @@ export function shop(state = initState, action) {
       newState.basket = state.basket.filter(
         (product) => product.product.id !== action.payload
       );
+      break;
+    case OPEN_MODAL:
+      newState.modalOpen = true;
+      break;
+    case CLOSE_MODAL:
+      newState.modalOpen = false;
+      break;
+    case DO_NOTHING:
+      if (newState.basket === []) {
+        alert('close');
+      }
       break;
     default:
       return state;

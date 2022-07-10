@@ -1,11 +1,15 @@
 import React, { useCallback, useState } from 'react';
 
-import { styled } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
-import { removeFromBasket } from '../../store/actions/shopActions';
+import { Button, styled } from '@mui/material';
+import {
+  DO_NOTHING,
+  OPEN_MODAL,
+  removeFromBasket,
+} from '../../store/actions/shopActions';
 import './Basket.css';
 import { BasketItem } from './BasketItem';
+import { CLOSE_MODAL } from './../../store/actions/shopActions';
 
 const Wrapper = styled('div')`
   position: fixed;
@@ -72,7 +76,16 @@ const Basket = () => {
     },
     [dispatch]
   );
+  const handleModalOpen = useCallback(() => {
+    dispatch({ type: OPEN_MODAL });
+  }, [dispatch]);
+  const handleModalClose = useCallback(() => {
+    dispatch({ type: CLOSE_MODAL });
+  }, [dispatch]);
 
+  const doNothing = useCallback(() => {
+    dispatch({ type: DO_NOTHING });
+  }, [dispatch]);
   return (
     <div>
       {expanded && <div className='basket__overlay'></div>}
@@ -123,6 +136,15 @@ const Basket = () => {
               count={product.count}
             />
           ))}
+
+        {expanded && (
+          <Button
+            style={{ marginTop: 'auto' }}
+            onClick={basket.length > 0 ? handleModalOpen : doNothing}
+          >
+            Submit Request
+          </Button>
+        )}
       </Wrapper>
     </div>
   );
